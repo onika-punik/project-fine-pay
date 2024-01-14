@@ -32,7 +32,43 @@ alert "Номер не співпадає" або "Сума не співпад�
 Якщо валідація проходить успішно, то виконати оплату,
  тобто вам потрібно видалити обєкт з DB
  */
-buttonSubmit.addEventListener('click',payFine);
-function payFine(){
+buttonSubmit.addEventListener("click", payFine);
+function payFine() {
+  if (!validateFields()) {
+    return;
+  }
 
+  let fine = findFine(fineNumber.value);
+  if (fine) {
+    if (fine["сума"] != amount.value) {
+      alert("Сума не співпадає");
+      return;
+    }
+    DB = DB.filter((f) => f["номер"] != fine["номер"]);
+    alert("Штраф номер " + fine["номер"] + " сплачено");
+  } else {
+    alert("Штраф за номером не знайдено");
+  }
+}
+
+function findFine(fineNumber) {
+  return DB.find((fine) => fine["номер"] == fineNumber);
+}
+
+function validateFields() {
+  if (!/^[а-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{2}[0-9]{6}$/.test(passport.value)) {
+    alert("Не вірний паспортний номер");
+    return false;
+  }
+
+  if (!/^4\d{3} *\d{4} *\d{4} *\d{4}$/.test(creditCardNumber.value)) {
+    alert("Не вірна кредитна картка");
+    return false;
+  }
+
+  if (!/^\d{3}$/.test(cvv.value)) {
+    alert("Не вірний cvv");
+    return false;
+  }
+  return true;
 }
