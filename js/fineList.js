@@ -19,9 +19,18 @@ function searchFines(searchKey){
      - Їзда у не тверезому стані
      */
 
-
-    return [
-        {номер: '001', тип: 'Перевищення швидкості', сума: 100, дата: '2023-01-15'}
-    ];
+    var searchedFines = [];
+    if (searchKey === "") {
+        searchedFines = DB;
+    }
+    for (let i = 0; i < DB.length; i++) {
+        if (DB[i].номер === searchKey){
+            searchedFines.push(DB[i]);
+        } else if (DB[i].тип === searchKey) {
+            searchedFines.push(DB[i]);
+        }
+    }
+ 
+    return searchedFines;
 }
 
