@@ -21,16 +21,7 @@ function searchFines(searchKey){
 
     var searchedFines = [];
     if (searchKey === "") {
-        searchedFines = DB;
+        return DB; 
     }
-    for (let i = 0; i < DB.length; i++) {
-        if (DB[i].номер === searchKey){
-            searchedFines.push(DB[i]);
-        } else if (DB[i].тип === searchKey) {
-            searchedFines.push(DB[i]);
-        }
-    }
- 
-    return searchedFines;
+    return DB.filter(fine => fine.номер === searchKey || fine.тип === searchKey);
 }
-
