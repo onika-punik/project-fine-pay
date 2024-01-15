@@ -19,7 +19,6 @@ function searchFines(searchKey){
      - Їзда у не тверезому стані
      */
 
-    var searchedFines = [];
     if (searchKey === "") {
         return DB; 
     }
