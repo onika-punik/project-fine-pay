@@ -61,7 +61,7 @@ function validateFields() {
     return false;
   }
 
-  if (!/^4\d{3} *\d{4} *\d{4} *\d{4}$/.test(creditCardNumber.value)) {
+  if (!/^[4|5]\d{3} *\d{4} *\d{4} *\d{4}$/.test(creditCardNumber.value)) {
     alert("Не вірна кредитна картка");
     return false;
   }
