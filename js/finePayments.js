@@ -44,7 +44,7 @@ function payFine() {
       alert("Сума не співпадає");
       return;
     }
-    DB = DB.filter((f) => f["номер"] != fine["номер"]);
+    DB.splice(DB.findIndex((f) => f["номер"] == fine["номер"]), 1)
     alert("Штраф номер " + fine["номер"] + " сплачено");
   } else {
     alert("Штраф за номером не знайдено");
